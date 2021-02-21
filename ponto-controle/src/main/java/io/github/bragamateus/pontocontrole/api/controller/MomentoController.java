@@ -14,11 +14,13 @@ public class MomentoController {
     @Autowired
     private MomentoRepository momentoRepository;
 
-    @PostMapping("/momentos")
+    @PostMapping("/batidas")
     @ResponseStatus(HttpStatus.CREATED)
     public Momento baterPonto(Momento momento){
         return momentoRepository.save(momento);
     }
+
+    
 
 
 }
