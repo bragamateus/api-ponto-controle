@@ -17,10 +17,9 @@ public class MomentoController {
     @PostMapping("/batidas")
     @ResponseStatus(HttpStatus.CREATED)
     public Momento baterPonto(Momento momento){
+
         return momentoRepository.save(momento);
+
     }
-
-    
-
 
 }

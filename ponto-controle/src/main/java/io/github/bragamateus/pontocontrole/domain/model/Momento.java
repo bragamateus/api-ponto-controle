@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -25,6 +26,7 @@ public class Momento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @Column(name = "data_hora")
     private LocalDateTime dataHora;
 

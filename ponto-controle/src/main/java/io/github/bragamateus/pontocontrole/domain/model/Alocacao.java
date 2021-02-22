@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.ZonedDateTime;
 
 @Entity
 @Data
@@ -31,4 +30,5 @@ public class Alocacao {
 
     @Column(name = "nome_projeto")
     private String nomeProjeto;
+
 }
