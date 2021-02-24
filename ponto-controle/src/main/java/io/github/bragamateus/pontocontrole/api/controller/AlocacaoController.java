@@ -1,7 +1,7 @@
 package io.github.bragamateus.pontocontrole.api.controller;
 
 import io.github.bragamateus.pontocontrole.domain.model.Alocacao;
-import io.github.bragamateus.pontocontrole.domain.model.Momento;
+import io.github.bragamateus.pontocontrole.domain.model.dto.AlocacaoDTO;
 import io.github.bragamateus.pontocontrole.domain.repository.AlocacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +18,13 @@ public class AlocacaoController {
     private AlocacaoRepository alocacaoRepository;
 
     @PostMapping("/alocacoes")
-    public Alocacao alocarHoras(@RequestBody  Alocacao alocacao){
+    public Alocacao alocarHoras(@RequestBody Alocacao alocacao){
         return alocacaoRepository.save(alocacao);
     }
-}
+
+    @GetMapping("/alocacoes")
+        public List<Alocacao> listar(){
+            return alocacaoRepository.findAll();
+        }
+    }
+
