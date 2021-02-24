@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -26,7 +27,7 @@ public class Alocacao {
 
     private LocalDate dia;
 
-    private LocalTime tempo;
+    private Duration tempo;
 
     @Column(name = "nome_projeto")
     private String nomeProjeto;
