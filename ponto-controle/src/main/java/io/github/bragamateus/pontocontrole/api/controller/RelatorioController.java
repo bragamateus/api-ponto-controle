@@ -1,21 +1,15 @@
 package io.github.bragamateus.pontocontrole.api.controller;
 
-import io.github.bragamateus.pontocontrole.domain.model.Alocacao;
 import io.github.bragamateus.pontocontrole.domain.model.Momento;
-import io.github.bragamateus.pontocontrole.domain.model.Relatorio;
 import io.github.bragamateus.pontocontrole.domain.model.dto.DiasTrabalhadosDTO;
 import io.github.bragamateus.pontocontrole.domain.model.dto.RelatorioDTO;
 import io.github.bragamateus.pontocontrole.domain.repository.AlocacaoRepository;
 import io.github.bragamateus.pontocontrole.domain.repository.MomentoRepository;
-import io.github.bragamateus.pontocontrole.domain.repository.RelatorioRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.Tuple;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,10 +17,8 @@ import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -42,7 +34,7 @@ public class RelatorioController {
     public RelatorioDTO buscarRelatorio(@Valid @PathVariable("mes") YearMonth mes) {
 
         LocalDateTime primeiroDiaMes = LocalDateTime.of(mes.atDay(1), LocalTime.of(0,0,0));
-        //TODO pegar último horário do mês
+        //TODO pegar último horário do último dia do mês
         LocalDateTime ultimoDiaMes = primeiroDiaMes.with(TemporalAdjusters.lastDayOfMonth());
 
         List<Momento> momentos = momentoRepository.findByPeriodo(primeiroDiaMes, ultimoDiaMes);
@@ -68,7 +60,7 @@ public class RelatorioController {
         });
 
         LocalDate primeiroDia = LocalDate.of(mes.getYear(), mes.getMonth(), 1);
-        //TODO pegar último horário do mês
+
         LocalDate ultimoDia = primeiroDia.with(TemporalAdjusters.lastDayOfMonth());
 
        relatorioDTO.setAlocacoes(alocacaoRepository.findAlocacaoByPeriodo(primeiroDia, ultimoDia));
